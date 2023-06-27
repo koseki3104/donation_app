@@ -13,4 +13,3 @@ class User < ApplicationRecord
     validates :nickname, format: {with: /\A[a-z0-9]+\z/i, message: "is invalid. Input half-width characters."}
   end
 end
-寄

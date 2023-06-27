@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_27_045807) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_27_063607) do
   create_table "addresses", charset: "utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "postal_code"
+    t.string "prefecture"
+    t.string "city"
+    t.string "house_number"
+    t.string "building_name"
+    t.bigint "donation_id", null: false
+    t.index ["donation_id"], name: "index_addresses_on_donation_id"
   end
 
   create_table "donations", charset: "utf8", force: :cascade do |t|
@@ -40,5 +47,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_27_045807) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "donations"
   add_foreign_key "donations", "users"
 end
